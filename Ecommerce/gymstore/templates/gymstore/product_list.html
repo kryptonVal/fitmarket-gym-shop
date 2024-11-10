@@ -1,0 +1,17 @@
+{% load static %}
+
+{% block title %}All Products{% endblock %}
+
+{% block content %}
+<h2>Our Products</h2>
+<div class="product-list">
+    {% for product in products %}
+        <div class="product-item">
+            <h3><a href="{% url 'gymstore:product_detail' product.id %}">{{ product.name }}</a></h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

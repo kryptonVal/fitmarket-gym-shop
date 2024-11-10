@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Logout</h2>
+        <p>You have been logged out successfully.</p>
+        <div class="auth-link">
+            <a href="{% url 'gymstore:login' %}" class="button-link">Login again</a>
+            <span> or </span>
+            <a href="{% url 'gymstore:home' %}" class="button-link">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

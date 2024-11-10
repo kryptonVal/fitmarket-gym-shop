@@ -1,0 +1,68 @@
+/* Custom Styling for FitMarket Logo */
+.logo-text {
+    font-family: 'Verdana', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffcc00; /* Gold color */
+}
+
+/* Navbar Styling */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.8);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.category-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-img {
+    object-fit: cover;
+    height: 150px;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+
+
+/* Product Cards */
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 30px 0;
+}
+.footer a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+.footer a:hover {
+    color: white;
+}
+.footer img {
+    height: 30px;
+    margin: 0 10px;
+}
