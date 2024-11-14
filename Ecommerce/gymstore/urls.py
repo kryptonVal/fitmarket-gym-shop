@@ -20,7 +20,7 @@ urlpatterns = [
     # Product page
     path('products/', views.product_list, name='product_list'),  # List all products
     path('products/<int:product_id>/', views.product_detail, name='product_detail'),  # Detail page for each product
-    path('products/<str:category>/', views.category_view, name='category_view'),  # Filter by category
+    path('products/<str:ct>/', views.category_view, name='category_view'),  # Filter by category
     path('products/<str:category>/<str:subcategory>/', views.subcategory_view, name='subcategory_view'),
 
     # Cart pages

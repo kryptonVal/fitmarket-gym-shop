@@ -19,16 +19,17 @@
             <div class="d-flex align-items-center">
                 <a href="{% url 'gymstore:home' %}" class="text-decoration-none d-flex align-items-center">
                     <img src="{% static 'images/logo.jpg' %}" alt="FitMarket Logo" style="height: 40px; margin-right: 10px;">
-                    <span class="fs-3 fw-bold" style="font-family: 'Verdana, sans-serif'; color: goldenrod">FitMarket</span>
+                    <span class="fs-3 fw-bold" style="font-family: 'Playfair Display', serif; color: royalblue">FitMarket</span>
                 </a>
-                <form class="d-flex ms-3" style="width: 300px;">
-                    <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
             </div>
-
             <div class="d-flex align-items-center">
-                <div class="dropdown me-3">
+                <div class="d-flex justify-content-center flex-grow-1">
+                    <form class="d-flex ms-3" style="width: 300px;">
+                        <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="dropdown ms-3 me-3">
                     <a href="#" class="text-white dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle"></i>
                     </a>
@@ -47,7 +48,7 @@
                         {% endif %}
                     </ul>
                 </div>
-                <a href="{% url 'gymstore:cart' %}" class="text-white">
+                <a href="{% url 'gymstore:cart' %}" class="text-white ms-3">
                     <i class="bi bi-cart-fill"></i>
                 </a>
             </div>
@@ -158,6 +159,7 @@
                             <h5 class="card-title">Women’s Gym Wear</h5>
                             <a href="{% url 'gymstore:category_view' 'Women' %}" class="btn btn-primary">Shop Now</a>
                         </div>
+                        <br/>
                     </div>
                 </div>
 
@@ -167,15 +169,16 @@
                         <img src="{% static 'images/kids-category.webp' %}" class="card-img-top" alt="Kids’ Gym Wear">
                         <div class="card-body text-center">
                             <h5 class="card-title">Kids’ Gym Wear</h5>
-                            <a href="{% url 'gymstore:category_view' 'Kids' %}" class="btn btn-primary">Shop Now</a>
+                            <a href="{% url 'gymstore:category_view' 'Kids' %}" class="btn btn-primary">Shop Now</a><br/>
                         </div>
+                        <br/><br/><br/>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Top Sellers Section -->
+    <!-- Featured prodct Section -->
     <section class="my-5">
         <div class="container">
             <h3 class="text-center mb-4">Featured products</h3>
@@ -187,6 +190,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Safari Seamless Bralette</h5>
                             <p class="card-text">€29.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XL</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XXL</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -199,6 +209,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Seamless Leggings</h5>
                             <p class="card-text">€35.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XL</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XXL</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -211,6 +228,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Drop Arm Tank</h5>
                             <p class="card-text">€24.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XL</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XXL</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -223,6 +247,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Seamless shorts</h5>
                             <p class="card-text">€19.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XL</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XXL</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -235,6 +266,11 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Lifting 5" Shorts</h5>
                             <p class="card-text">€19.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -247,6 +283,13 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Active Gym Bag Medium</h5>
                             <p class="card-text">€49.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XL</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">XXL</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -259,6 +302,11 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Lifting Gloves</h5>
                             <p class="card-text">€44.99</p>
+                            <div class="size-selector mb-3">
+                                <span class="btn btn-outline-secondary btn-sm mx-1">S</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">M</span>
+                                <span class="btn btn-outline-secondary btn-sm mx-1">L</span>
+                            </div>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -271,6 +319,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Kids-Box Gym set</h5>
                             <p class="card-text">€129.99</p>
+                            <br/><br/>
                             <a href="#" class="btn btn-outline-primary">Add to Cart</a>
                         </div>
                     </div>
@@ -307,7 +356,7 @@
                     <a href="#"><img src="{% static 'icons/paypal.png' %}" alt="PayPal"></a>
                 </div>
             </div>
-            <p class="text-center mb-0">&copy; 2023 FitMarket Gym Store. All Rights Reserved.</p>
+            <p class="text-center mb-0">&copy; 2024 FitMarket Gym Store. All Rights Reserved.</p>
         </div>
     </footer>
 

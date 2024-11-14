@@ -20,15 +20,16 @@ def profile_view(request):
 
 #Product views
 def product_list(request, product_id):
-    products = get_object_or_404(Product, product_id)
+    products = Product.objects.all()
     return render(request, 'gymstore/product_list.html', {'products': products})
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     return render(request, 'gymstore/product_detail.html', {'product': product})
 
-def category_view(request):
-    category = Category.objects.all()
+def category_view(request, ct):
+    print(ct)
+    category = Category.objects.filter(name=ct)[0]
     products = Product.objects.filter(category=category)
     return render(request, 'gymstore/category_view.html', {'category': category, 'products': products})
 

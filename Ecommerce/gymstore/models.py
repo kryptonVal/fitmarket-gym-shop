@@ -1,33 +1,37 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 #categories of products
 class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
     name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} {self.gender}"
+        return self.name
 
 class SubCategory(models.Model):
     class Meta:
         verbose_name_plural = 'Sub-Categories'
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
     name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.category} {self.name}"
+        return self.name
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    username = models.CharField(max_length=255, unique=True)
+    phone_number = models.CharField(max_length=255, unique=True, null=True)
+    email = models.EmailField(blank=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     zip_code = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.user.username
+        return self.username
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -42,14 +46,13 @@ class Product(models.Model):
         return self.name
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders', null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    is_paid = models.BooleanField(default=False)
     payment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Order #{self.id} {self.user.username}"
+        return self.id
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
@@ -69,7 +72,7 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Cart for {self.customer.user.username}"
+        return f"Cart for {self.customer.username}"
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
@@ -77,12 +80,12 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.quantity} {self.product.name} in cart for {self.cart.customer.user.username}"
+        return f"{self.quantity} {self.product.name} in cart for {self.cart.customer.username}"
     def get_total_price(self):
         return self.product.price * self.quantity
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(Customer, on_delete=models.CASCADE)
     address = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=255, null=True, blank=True)
 
