@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/../../static/styles/styles.css' %}">
 
 </head>
 <body>
@@ -18,7 +18,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <a href="{% url 'gymstore:home' %}" class="text-decoration-none d-flex align-items-center">
-                    <img src="{% static 'images/logo.jpg' %}" alt="FitMarket Logo" style="height: 40px; margin-right: 10px;">
+                    <img src="{% static 'images/../../static/images/logo.jpg' %}" alt="FitMarket Logo" style="height: 40px; margin-right: 10px;">
                     <span class="fs-3 fw-bold" style="font-family: 'Playfair Display', serif; color: royalblue">FitMarket</span>
                 </a>
             </div>
@@ -143,7 +143,7 @@
                 <!-- Men’s Category Card -->
                 <div class="col-md-4">
                     <div class="card category-card h-100">
-                        <img src="{% static 'images/men-category.webp' %}" class="card-img-top" alt="Men’s Gym Wear">
+                        <img src="{% static 'images/../../static/images/men-category.webp' %}" class="card-img-top" alt="Men’s Gym Wear">
                         <div class="card-body text-center">
                             <h5 class="card-title">Men’s Gym Wear</h5>
                             <a href="{% url 'gymstore:category_view' 'Men' %}" class="btn btn-primary">Shop Now</a>
@@ -154,7 +154,7 @@
                 <!-- Women’s Category Card -->
                 <div class="col-md-4">
                     <div class="card category-card h-100">
-                        <img src="{% static 'images/women-category.avif' %}" class="card-img-top" alt="Women’s Gym Wear">
+                        <img src="{% static 'images/../../static/images/women-category.avif' %}" class="card-img-top" alt="Women’s Gym Wear">
                         <div class="card-body text-center">
                             <h5 class="card-title">Women’s Gym Wear</h5>
                             <a href="{% url 'gymstore:category_view' 'Women' %}" class="btn btn-primary">Shop Now</a>
@@ -166,7 +166,7 @@
                 <!-- Kids Category Card -->
                 <div class="col-md-4">
                     <div class="card category-card h-100">
-                        <img src="{% static 'images/kids-category.webp' %}" class="card-img-top" alt="Kids’ Gym Wear">
+                        <img src="{% static 'images/../../static/images/kids-category.webp' %}" class="card-img-top" alt="Kids’ Gym Wear">
                         <div class="card-body text-center">
                             <h5 class="card-title">Kids’ Gym Wear</h5>
                             <a href="{% url 'gymstore:category_view' 'Kids' %}" class="btn btn-primary">Shop Now</a><br/>
@@ -186,7 +186,7 @@
                 <!-- Product 1 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product1.webp' %}" class="card-img-top" alt="Product 1">
+                        <img src="{% static 'images/../../static/images/product1.webp' %}" class="card-img-top" alt="Product 1">
                         <div class="card-body text-center">
                             <h5 class="card-title">Safari Seamless Bralette</h5>
                             <p class="card-text">€29.99</p>
@@ -205,7 +205,7 @@
                 <!-- Product 2 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product2.webp' %}" class="card-img-top" alt="Product 2">
+                        <img src="{% static 'images/../../static/images/product2.webp' %}" class="card-img-top" alt="Product 2">
                         <div class="card-body text-center">
                             <h5 class="card-title">Seamless Leggings</h5>
                             <p class="card-text">€35.99</p>
@@ -224,7 +224,7 @@
                 <!-- Product 3 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product3.webp' %}" class="card-img-top" alt="Product 3">
+                        <img src="{% static 'images/../../static/images/product3.webp' %}" class="card-img-top" alt="Product 3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Drop Arm Tank</h5>
                             <p class="card-text">€24.99</p>
@@ -243,7 +243,7 @@
                 <!-- Product 4 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product4.avif' %}" class="card-img-top" alt="Product 4">
+                        <img src="{% static 'images/../../static/images/product4.avif' %}" class="card-img-top" alt="Product 4">
                         <div class="card-body text-center">
                             <h5 class="card-title">Seamless shorts</h5>
                             <p class="card-text">€19.99</p>
@@ -262,7 +262,7 @@
                 <!-- Product 5 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product5.webp' %}" class="card-img-top" alt="Product 5">
+                        <img src="{% static 'images/../../static/images/product5.webp' %}" class="card-img-top" alt="Product 5">
                         <div class="card-body text-center">
                             <h5 class="card-title">Lifting 5" Shorts</h5>
                             <p class="card-text">€19.99</p>
@@ -279,7 +279,7 @@
                 <!-- Product 6 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product6.webp' %}" class="card-img-top" alt="Product 6">
+                        <img src="{% static 'images/../../static/images/product6.webp' %}" class="card-img-top" alt="Product 6">
                         <div class="card-body text-center">
                             <h5 class="card-title">Active Gym Bag Medium</h5>
                             <p class="card-text">€49.99</p>
@@ -298,7 +298,7 @@
                 <!-- Product 7 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product7.webp' %}" class="card-img-top" alt="Product 7">
+                        <img src="{% static 'images/../../static/images/product7.webp' %}" class="card-img-top" alt="Product 7">
                         <div class="card-body text-center">
                             <h5 class="card-title">Lifting Gloves</h5>
                             <p class="card-text">€44.99</p>
@@ -315,7 +315,7 @@
                 <!-- Product 8 -->
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{% static 'images/product8.webp' %}" class="card-img-top" alt="Product 8">
+                        <img src="{% static 'images/../../static/images/product8.webp' %}" class="card-img-top" alt="Product 8">
                         <div class="card-body text-center">
                             <h5 class="card-title">Kids-Box Gym set</h5>
                             <p class="card-text">€129.99</p>
@@ -351,9 +351,9 @@
                 <!-- Payment Methods Icons -->
                 <div class="col-md-4 text-md-end text-center">
                     <h5>Payment Methods</h5>
-                    <a href="#"><img src="{% static 'icons/visa.webp' %}" alt="Visa" class="me-2"></a>
-                    <a href="#"><img src="{% static 'icons/mastercard.webp' %}" alt="MasterCard" class="me-2"></a>
-                    <a href="#"><img src="{% static 'icons/paypal.png' %}" alt="PayPal"></a>
+                    <a href="#"><img src="{% static 'icons/../../static/icons/visa.webp' %}" alt="Visa" class="me-2"></a>
+                    <a href="#"><img src="{% static 'icons/../../static/icons/mastercard.webp' %}" alt="MasterCard" class="me-2"></a>
+                    <a href="#"><img src="{% static 'icons/../../static/icons/paypal.png' %}" alt="PayPal"></a>
                 </div>
             </div>
             <p class="text-center mb-0">&copy; 2024 FitMarket Gym Store. All Rights Reserved.</p>

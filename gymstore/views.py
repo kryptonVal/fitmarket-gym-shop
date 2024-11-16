@@ -12,31 +12,31 @@ from django.http import JsonResponse
 
 
 def home(request):
-    return render(request, 'gymstore/home.html')
+    return render(request, 'gymstore/templates/gymstore/home.html')
 
 @login_required
 def profile_view(request):
-    return render(request, 'gymstore/profile.html', {'user': request.user})
+    return render(request, 'gymstore/templates/gymstore/profile.html', {'user': request.user})
 
 #Product views
 def product_list(request, product_id):
     products = Product.objects.all()
-    return render(request, 'gymstore/product_list.html', {'products': products})
+    return render(request, 'gymstore/templates/gymstore/product_list.html', {'products': products})
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'gymstore/product_detail.html', {'product': product})
+    return render(request, 'gymstore/templates/gymstore/product_detail.html', {'product': product})
 
 def category_view(request, ct):
     print(ct)
     category = Category.objects.filter(name=ct)[0]
     products = Product.objects.filter(category=category)
-    return render(request, 'gymstore/category_view.html', {'category': category, 'products': products})
+    return render(request, 'gymstore/templates/gymstore/category_view.html', {'category': category, 'products': products})
 
 def subcategory_view(request):
     subcategory = Category.objects.all()
     products = Product.objects.filter(subcategory=subcategory)
-    return render(request, 'gymstore/subcategory_view.html', {'subcategory': subcategory, 'products': products})
+    return render(request, 'gymstore/templates/gymstore/subcategory_view.html', {'subcategory': subcategory, 'products': products})
 
 #Authentication views
 def register(request):
@@ -51,7 +51,7 @@ def register(request):
             messages.error(request, "Please correct the errors below.")
     else:
         form = RegisterForm()
-    return render(request, 'accounts/register.html', {"form": form})
+    return render(request, 'accounts/templates/accounts/register.html', {"form": form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -70,7 +70,7 @@ def login_view(request):
             messages.error(request, "Invalid credentials.")
     else:
         form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'accounts/templates/accounts/login.html', {'form': form})
 
 @login_required
 def logout_view(request):
@@ -85,16 +85,16 @@ def logout_view(request):
 @login_required
 def order_history(request):
     orders = Order.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'gymstore/order_history.html', {'orders': orders})
+    return render(request, 'gymstore/templates/gymstore/order_history.html', {'orders': orders})
 
 @login_required
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
-    return render(request, 'gymstore/order_detail.html', {"order": order})
+    return render(request, 'gymstore/templates/gymstore/order_detail.html', {"order": order})
 
 @login_required
 def order_complete(request, order_id):
-    return render(request, 'gymstore/order_complete.html')
+    return render(request, 'gymstore/templates/gymstore/order_complete.html')
 
 #CheckOUt view
 @login_required
@@ -113,7 +113,7 @@ def checkout_view(request):
         request.session['cart'] = {}  # Clear cart after successful order
         messages.success(request, "Your order has been placed.")
         return redirect('gymstore/order_complete')
-    return render(request, 'gymstore/checkout.html')
+    return render(request, 'gymstore/templates/gymstore/checkout.html')
 
 #Cart views
 @login_required
@@ -121,7 +121,7 @@ def cart_view(request):
     cart = request.session.get('cart', {})
     products = Product.objects.filter(id__in=cart.keys())
     total = sum(product.price * quantity for product, quantity in zip(products, cart.values()))
-    return render(request, 'gymstore/cart.html', {'products': products, 'total': total})
+    return render(request, 'gymstore/templates/gymstore/cart.html', {'products': products, 'total': total})
 @login_required
 def add_to_cart(request, product_id):
     cart = request.session.get('cart', {})
