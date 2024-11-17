@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-#categories of products
 class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
@@ -11,6 +10,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class SubCategory(models.Model):
     class Meta:
@@ -22,16 +22,6 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
-class Customer(models.Model):
-    username = models.CharField(max_length=255, unique=True)
-    phone_number = models.CharField(max_length=255, unique=True, null=True)
-    email = models.EmailField(blank=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, blank=True, null=True)
-    zip_code = models.CharField(max_length=255, blank=True, null=True)
-
-    def __str__(self):
-        return self.username
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -46,16 +36,16 @@ class Product(models.Model):
         return self.name
 
 class Order(models.Model):
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders', null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', null=True)
     order_date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_date = models.DateTimeField(auto_now_add=True)
+    payment_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.id
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+class OrderProduct(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='products')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -67,36 +57,32 @@ class OrderItem(models.Model):
         return self.price * self.quantity
 
 class Cart(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='carts')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Cart for {self.customer.username}"
+        return f"Cart for {self.user}"
 
-class CartItem(models.Model):
+class CartProduct(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.quantity} {self.product.name} in cart for {self.cart.customer.username}"
+        return f"{self.quantity} {self.product.name} in cart for {self.cart.user}"
     def get_total_price(self):
         return self.product.price * self.quantity
 
+
 class Profile(models.Model):
-    user = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    address = models.CharField(max_length=255, null=True, blank=True)
-    email = models.EmailField(max_length=255, null=True, blank=True)
+    user = models.CharField(max_length=255, unique=True)
+    phone_number = models.CharField(max_length=255, unique=True, null=False)
+    email = models.EmailField(blank=False, null=False)
+    address = models.TextField(blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    zip_code = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.username}'s Profile"
-
-class CurrencyRates(models.Model):
-    currency_code = models.CharField(max_length=3, unique=True)
-    exchange_rate = models.DecimalField(max_digits=10, decimal_places=4)
-    last_updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Exchange rate for {self.currency_code}"
+        return self.user
 # Create your models here.

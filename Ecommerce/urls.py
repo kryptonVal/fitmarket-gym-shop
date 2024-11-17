@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from gymstore import views as gym_views
 
 
 
@@ -24,5 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('gymstore/', include('gymstore.urls')),
-    path('', gym_views.home, name='home'),
 ]
