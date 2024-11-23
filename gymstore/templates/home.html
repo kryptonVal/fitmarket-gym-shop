@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitMarket</title>
+</head>
+<body>
+    <header>
+        <h2>FitMarket <img src="{% static 'images/lgo.jpg' %}" alt="logo"></h2>
+        <form>
+            <input type="search" placeholder="Search products"/>
+            <button type="submit">Search</button>
+        </form>
+        <div>
+            <li><a href="{% url 'gymstore:login' %}">Login</a></li>
+            <li><a href="{% url 'gymstore:register' %}">Register</a></li>
+            <img src="{'images/cart-icon.png'}" alt="Cart">
+        </div>
+    </header>
+
+    <section>
+        <h1>Welcome to FitMarket Gym-Shop</h1>
+        <p>Discover the latest Gym essential trends and exclusive offers</p>
+        <button type="button">Shop Now</button>
+    </section>
+
+    <section>
+        <h5>Men's Category</h5>
+        <img src="{% static 'images/mens-categories.jpg' %}" alt="mens category">
+        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
+    </section>
+
+    <section>
+        <h5>Women's Category</h5>
+        <img src="{% static 'images/womens-categories.jpg' %}" alt="womens category">
+        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
+    </section>
+
+    <section>
+        <h5>Kids Category</h5>
+        <img src="{% static 'images/kids-categories.jpg' %}" alt="kids category">
+        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
+    </section>
+
+    <section>
+        <h2>Featured Products</h2>
+        <div>
+            <img src="{% static 'images/product1.jpg' %}" alt="product1">
+            <h5>Seamless leggings</h5>
+            <p>€49.99</p>
+        </div>
+
+        <div>
+            <img src="{% static 'images/product2.jpg' %}" alt="product2">
+            <h5>Mens shorts</h5>
+            <p>€29.99</p>
+        </div>
+
+        <div>
+            <img src="{% static 'images/product3.jpg' %}" alt="product3">
+            <h5>Bags</h5>
+            <p>€59.99</p>
+        </div>
+
+    </section>
+
+</body>
+</html>

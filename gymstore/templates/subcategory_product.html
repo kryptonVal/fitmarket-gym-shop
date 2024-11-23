@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ subcategory.name }}</h1>
+    <p>{{ subcategory.description }}</p>
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'gymstore:product_details' product.pk %}">{{ product.name }}</a> - €{{ product.price }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

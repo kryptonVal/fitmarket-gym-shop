@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Carts</title>
+</head>
+<body>
+    <h1>All Carts</h1>
+    <ul>
+        {% for cart in carts %}
+            <li>
+                <h2>Cart ID: {{ cart.id }}</h2>
+                <p>Created At: {{ cart.created_at }}</p>
+                <p>Updated At: {{ cart.updated_at }}</p>
+                <a href="{% url 'cart_detail' cart.id %}">View Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
