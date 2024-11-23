@@ -14,7 +14,7 @@
                 <ul>
                     {% for subcategory in category.subcategories.all %}
                         <li>
-                            <a href="{% url 'gymstore:subcategory_product' subcategory.pk %}">{{ subcategory.name }}</a>
+                            <a href="{% url 'gymstore:subcategory_products' subcategory.pk %}">{{ subcategory.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>

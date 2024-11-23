@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h2>FitMarket <img src="{% static 'images/lgo.jpg' %}" alt="logo"></h2>
+        <h2>FitMarket <img src="{% static 'images/logo.jpg' %}" alt="logo"></h2>
         <form>
             <input type="search" placeholder="Search products"/>
             <button type="submit">Search</button>
@@ -16,7 +16,7 @@
         <div>
             <li><a href="{% url 'gymstore:login' %}">Login</a></li>
             <li><a href="{% url 'gymstore:register' %}">Register</a></li>
-            <img src="{'images/cart-icon.png'}" alt="Cart">
+            <img src="{% static 'images/cart-icon.png' %}" alt="Cart">
         </div>
     </header>
 
