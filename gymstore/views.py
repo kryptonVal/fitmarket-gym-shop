@@ -32,7 +32,7 @@ class ProductListView(View):
     def get(self, request, *args, **kwargs):
         products = Product.objects.all()
         context = {'products': products}
-        return render(request, 'product_list.html', context)
+        return render(request, 'product_lists.html', context)
 
 
 class ProductDetailView(View):

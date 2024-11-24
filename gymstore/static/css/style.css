@@ -1,0 +1,127 @@
+/* Custom Styling for FitMarket Logo */
+.logo-text {
+    font-family: 'Verdana', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffcc00; /* Gold color */
+}
+
+/* Navbar Styling */
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.8);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.dropdown {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Category Section */
+.category-img img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.category-name h2 {
+    color: #333;
+    margin-top: 10px;
+}
+
+.category-img {
+    transition: transform 0.3s ease;
+}
+
+.category-img:hover {
+    transform: scale(1.05);
+}
+
+/* Featured Products Section */
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* General Adjustments */
+.row.g-4 > [class*='col-'] {
+    display: flex;
+    align-items: stretch;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #222;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.footer h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.footer a {
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ff9800;
+}
+
+.footer i {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer i:hover {
+    color: #ff9800;
+    transform: scale(1.2);
+}
+
+.footer p {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .footer h5 {
+        text-align: center;
+    }
+
+    .footer .text-md-end {
+        text-align: center !important;
+    }
+}
+
+
+

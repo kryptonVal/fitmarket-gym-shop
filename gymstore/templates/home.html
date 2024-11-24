@@ -1,70 +1,100 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>FitMarket</title>
-</head>
-<body>
-    <header>
-        <h2>FitMarket <img src="{% static 'images/logo.jpg' %}" alt="logo"></h2>
-        <form>
-            <input type="search" placeholder="Search products"/>
-            <button type="submit">Search</button>
-        </form>
-        <div>
-            <li><a href="{% url 'gymstore:login' %}">Login</a></li>
-            <li><a href="{% url 'gymstore:register' %}">Register</a></li>
-            <img src="{% static 'images/cart-icon.png' %}" alt="Cart">
+{% block title %}Home - FitMarket{% endblock %}
+
+{% block content %}
+
+<section class="my-5">
+    <div class="container position-relative" style="max-width: 100%;">
+        <div class="overlay-content text-center text white">
+            <h1 class="display-4">Welcome to FitMarket Shop</h1>
+            <p class="lead">Discover the latest gym essentials trends and exclusive offers</p>
+            <a href="{% url 'gymstore:product_lists' %}" class="btn btn-primary">Shop Now</a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <section>
-        <h1>Welcome to FitMarket Gym-Shop</h1>
-        <p>Discover the latest Gym essential trends and exclusive offers</p>
-        <button type="button">Shop Now</button>
-    </section>
-
-    <section>
-        <h5>Men's Category</h5>
-        <img src="{% static 'images/mens-categories.jpg' %}" alt="mens category">
-        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
-    </section>
-
-    <section>
-        <h5>Women's Category</h5>
-        <img src="{% static 'images/womens-categories.jpg' %}" alt="womens category">
-        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
-    </section>
-
-    <section>
-        <h5>Kids Category</h5>
-        <img src="{% static 'images/kids-categories.jpg' %}" alt="kids category">
-        <a href="{% url 'gymstore:category_list' %}">Shop Now</a>
-    </section>
-
-    <section>
-        <h2>Featured Products</h2>
-        <div>
-            <img src="{% static 'images/product1.jpg' %}" alt="product1">
-            <h5>Seamless leggings</h5>
-            <p>€49.99</p>
+<section class="my-5">
+    <div class="category">
+        <div class="container-fluid">
+            <div class="row g-4">
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="category-img text-center p-3 bg-light rounded">
+                        <img src="{% static 'images/men.webp' %}" class="img-fluid rounded mb-2" alt="Men's">
+                        <a class="category-name text-decoration-none" href="{% url 'gymstore:category_list' %}">
+                            <h2 class="fs-4">MEN'S</h2>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="category-img text-center p-3 bg-light rounded">
+                        <img src="{% static 'images/women.webp' %}" class="img-fluid rounded mb-2" alt="Women's">
+                        <a class="category-name text-decoration-none" href="{% url 'gymstore:category_list' %}">
+                            <h2 class="fs-4">WOMEN'S</h2>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="category-img text-center p-3 bg-light rounded">
+                        <img src="{% static 'images/kid.jpg' %}" class="img-fluid rounded mb-2" alt="Kids">
+                        <a class="category-name text-decoration-none" href="{% url 'gymstore:category_list' %}">
+                            <h2 class="fs-4">KIDS</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div>
-            <img src="{% static 'images/product2.jpg' %}" alt="product2">
-            <h5>Mens shorts</h5>
-            <p>€29.99</p>
+<section class="my-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <div class="row g-4">
+            <div class="col-md-3 d-flex align-items-stretch">
+                <div class="card product-card">
+                    <img src="{% static 'images/kidshoes.jpg' %}" class="card-img-top" alt="Shoes">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Shoes</h5>
+                        <p class="card-text">€29.99</p>
+                        <a href="{% url 'gymstore:cart' pk=user.id %}" class="btn btn-outline-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch">
+                <div class="card product-card">
+                    <img src="{% static 'images/leggings.webp' %}" class="card-img-top" alt="Leggings">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Leggings</h5>
+                        <p class="card-text">€34.99</p>
+                        <a href="{% url 'gymstore:cart' pk=user.id %}" class="btn btn-outline-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch">
+                <div class="card product-card">
+                    <img src="{% static 'images/bags.webp' %}" class="card-img-top" alt="Bags">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Bags</h5>
+                        <p class="card-text">€24.99</p>
+                        <a href="{% url 'gymstore:cart' pk=user.id %}" class="btn btn-outline-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-stretch">
+                <div class="card product-card">
+                    <img src="{% static 'images/shorts.webp' %}" class="card-img-top" alt="Shorts">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Shorts</h5>
+                        <p class="card-text">€19.99</p>
+                        <a href="{% url 'gymstore:cart' pk=user.id %}" class="btn btn-outline-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div>
-            <img src="{% static 'images/product3.jpg' %}" alt="product3">
-            <h5>Bags</h5>
-            <p>€59.99</p>
-        </div>
+{% endblock %}
 
-    </section>
-
-</body>
-</html>
