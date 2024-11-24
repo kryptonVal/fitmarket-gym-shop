@@ -112,16 +112,7 @@ body {
     margin: 0;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 576px) {
-    .footer h5 {
-        text-align: center;
-    }
 
-    .footer .text-md-end {
-        text-align: center !important;
-    }
-}
 
 
 

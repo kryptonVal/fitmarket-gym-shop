@@ -1,21 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Product List</title>
-</head>
+{% block title %}Product Lists - FitMarket{% endblock %}
+
+{% block content %}
+    
+<style>
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+        .product-details {
+            padding: 16px;
+            text-align: center;
+        }
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .product-price {
+            font-size: 16px;
+            color: #666;
+            margin: 8px 0;
+        }
+        .product-description {
+            font-size: 14px;
+            color: #777;
+        }
+        .buy-now {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .buy-now:hover {
+            background: #0056b3;
+        }
+    </style>
+    
 <body>
-    <h1>Product List</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <h2>{{ product.name }}</h2>
-                <p>{{ product.description }}</p>
-                <p>Price: ${{ product.price }}</p>
-                <p>Stock: {{ product.stock }}</p>
-                <a href="{% url 'gymstore:product_details' product.id %}">View Details</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Gym Products</h1>
+        <div class="product-list">
+            <!-- Product 1: Gym Bag -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/bags.webp' %}" alt="Gym Bag">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Gym Bag</h2>
+                    <p class="product-price">€25.99</p>
+                    <p class="product-description">A durable and spacious gym bag to carry all your essentials.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 2: Kids Leggings -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/kids leggings.jpg' %}" alt="Kids Leggings">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Kids Leggings</h2>
+                    <p class="product-price">€15.99</p>
+                    <p class="product-description">Comfortable and stretchable leggings designed for active kids.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 3: Gym Water Bottle -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/hydration bottle.jpg' %}" alt="Gym Water Bottle">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Gym Water Bottle</h2>
+                    <p class="product-price">€12.99</p>
+                    <p class="product-description">Stay hydrated with this lightweight, leak-proof water bottle.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 4: Fashion Kid Sport Shoes -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/kidshoes.jpg' %}" alt="Fashion Kid Sport Shoes">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Fashion Kid Sport Shoes</h2>
+                    <p class="product-price">€29.99</p>
+                    <p class="product-description">Stylish and durable sport shoes for active kids.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 5: Women's Leggings -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/seamless leggings.jpg' %}" alt="Women's Leggings">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Women's Leggings</h2>
+                    <p class="product-price">€19.99</p>
+                    <p class="product-description">Comfortable, high-waisted leggings for women, perfect for workouts.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 6: Men's Gym Shorts -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/men shorts.jpg' %}" alt="Men's Gym Shorts">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Men's Gym Shorts</h2>
+                    <p class="product-price">€18.99</p>
+                    <p class="product-description">Lightweight, comfortable shorts for men's workouts.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>                
+                </div>
+            </div>
+            <!-- Product 7: Men's Gym Shirt -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/men shirt.jpg' %}" alt="Men's Gym Shirt">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Men's Gym Shirt</h2>
+                    <p class="product-price">€16.99</p>
+                    <p class="product-description">Breathable and moisture-wicking shirt for men's gym sessions.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 8: Women's Gym Shirt -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/women shirt.jpg' %}" alt="Women's Gym Shirt">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Women's Gym Shirt</h2>
+                    <p class="product-price">€16.99</p>
+                    <p class="product-description">Stylish and comfortable gym shirt for women.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 9: Men's Gym Shoes -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/men shoes.jpg' %}" alt="Men's Gym Shoes">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Men's Gym Shoes</h2>
+                    <p class="product-price">€45.99</p>
+                    <p class="product-description">High-performance gym shoes for men.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+            <!-- Product 10: Women's Gym Shoes -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{% static 'images/women shoe.jpg' %}" alt="Women's Gym Shoes">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-name">Women's Gym Shoes</h2>
+                    <p class="product-price">€42.99</p>
+                    <p class="product-description">Lightweight, durable gym shoes for women.</p>
+                    <a href="{% url 'gymstore:cart' pk=user.id %}" class="buy-now">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
+{% endblock %}
