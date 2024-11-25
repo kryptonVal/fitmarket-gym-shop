@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>My Profile</h2>
+    <div class="card shadow-sm p-4">
+        <h5 class="card-title">Welcome, {{ user.username }}!</h5>
+        <p class="card-text">
+            <strong>Email:</strong> {{ user.email }}<br>
+        </p>
+    </div>
+</div>
+{% endblock %}

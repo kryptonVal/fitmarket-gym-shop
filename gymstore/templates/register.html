@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Register - FitMarket{% endblock %}
+
+{% block content %}
+<div class="container my-5">
     <h2>Register</h2>
-    <form method="post" action="{% url 'gymstore:register' %}">
+
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
-    <p>Already have an account? <a href="{% url 'gymstore:login' %}">Login</a></p>
-</body>
-</html>
+</div>
+{% endblock %}

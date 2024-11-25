@@ -4,14 +4,20 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
-from .models import Category, SubCategory, Product, Order, Cart
+from .models import Category, SubCategory, Product, Order, Cart, CartProduct
 
 
 # HomeView
 class HomeView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'home.html')
+        categories = Category.objects.all()
+        featured_products = Product.objects.filter(is_featured=True)
 
+        context = {
+            "categories": categories,
+            "featured_products": featured_products,
+        }
+        return render(request, "home.html", context)
 
 # Category, Product, Cart, & Order Views
 class CategoryView(View):
@@ -51,16 +57,35 @@ class OrderView(View):
 
 class CartView(View):
     def get(self, request, *args, **kwargs):
-        carts = Cart.objects.filter(user=request.user)
-        context = {'carts': carts}
+        cart_products = CartProduct.objects.filter(cart__user=request.user)
+        context = {'cart_products': cart_products}
+        return render(request, 'cart.html', context)
+    def post(self, request, *args, **kwargs):
+        cart = Cart(user=request.user)
+
+class AddToCartView(View):
+    def get(self, request, *args, **kwargs):
+        cart_products = CartProduct.objects.filter(cart__user=request.user)
+        context = {'cart_products': cart_products}
         return render(request, 'cart.html', context)
 
+    def post(self, request, *args, **kwargs):
+        product_id=kwargs.get('product_id')
+        product = get_object_or_404(Product, pk=product_id)
 
-class CartDetailView(View):
-    def get(self, request, *args, **kwargs):
-        cart = get_object_or_404(Cart, pk=kwargs.get('pk'))
-        context = {'cart': cart}
-        return render(request, 'cart_detail.html', context)
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_product, created = CartProduct.objects.get_or_create(cart=cart, product=product)
+
+        if not created:
+            cart_product.quantity += 1
+            cart_product.save()
+        else:
+            cart_product.quantity = 1
+            cart_product.save()
+
+        messages.success(request, f"{product.name} has been added to your cart!")
+        return redirect('gymstore:cart')
+
 
 
 # Register, Login & Logout Views
@@ -77,7 +102,7 @@ class RegisterView(View):
             user = form.save()
             login(request, user)
             messages.success(request, f'Welcome to FitMarket, {user.username}!')
-            return redirect('home')
+            return redirect('gymstore:home')
         else:
             messages.error(request, 'Fix errors below and try again.')
         return render(request, 'register.html', context)
@@ -96,14 +121,11 @@ class LoginView(View):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user is not None:
+            if user:
                 login(request, user)
                 messages.success(request, f'Welcome to FitMarket, {user.username}!')
                 return redirect('gymstore:home')
-            else:
-                messages.error(request, 'Invalid username or password.')
-        else:
-            messages.error(request, 'Invalid username or password.')
+        messages.error(request, 'Invalid username or password.')
         return render(request, 'login.html', context)
 
 
@@ -111,4 +133,10 @@ class LogoutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
         messages.success(request, 'You have been logged out.')
-        return redirect('login')
+        return redirect('gymstore:login')
+
+class ProfileView(View):
+    def get(self, request, *args, **kwargs):
+        user=request.user
+        context = {'user': user}
+        return render(request, 'profile.html', context)
