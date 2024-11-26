@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from .models import Category, SubCategory, Product, Order, Cart, CartProduct
 
 
@@ -165,3 +165,10 @@ class ProfileView(View):
         user=request.user
         context = {'user': user}
         return render(request, 'profile.html', context)
+
+
+class FAQView(TemplateView):
+    template_name = 'faq.html'
+
+class CustomerServiceView(TemplateView):
+    template_name = 'customer_service.html'

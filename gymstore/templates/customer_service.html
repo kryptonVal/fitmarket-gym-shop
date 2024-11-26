@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Customer Service - FitMarket{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center customer-service-title">Customer Service</h1>
+    <p class="text-center text-muted mb-4">We’re here to help. Contact us anytime.</p>
+    
+    <div class="row">
+        <!-- Address Section -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Our Address</h4>
+                    <p class="card-text">
+                        FitMarket Headquarters<br>
+                        123 Old town Street,<br>
+                        Tallinn City, FK 56789<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Contact Us</h4>
+                    <p class="card-text">
+                        Phone: <a href="tel:+37253907890">+37253907890</a><br>
+                        Email: <a href="mailto:support@fitmarket.com">support@fitmarket.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Working Hours Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Working Hours</h4>
+                    <p class="card-text">
+                        Monday to Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

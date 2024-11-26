@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (HomeView, CategoryView, SubCategoryView, ProductDetailView, OrderView, CartView, ProductListView,
-                    RegisterView, LoginView, LogoutView, AddToCartView, ProfileView, CheckoutView)
+                    RegisterView, LoginView, LogoutView, AddToCartView, ProfileView, CheckoutView, FAQView,
+                    CustomerServiceView)
 
 app_name = 'gymstore'
 
@@ -18,4 +19,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/', ProfileView.as_view(), name='profile'),
+    path('faq/', FAQView.as_view(), name='faq'),
+    path('customer-service/', CustomerServiceView.as_view(), name='customer-service'),
 ]
