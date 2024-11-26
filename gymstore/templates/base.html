@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
+    {% if messages %}
+        {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
+        {% endfor %}
+    {% endif %}
+    
     <header class="bg-dark text-white py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="{% url 'gymstore:home' %}" class="d-flex align-items-center text-decoration-none">
@@ -72,9 +82,9 @@
                             WOMEN'S
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="womenDropdown">
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">Leggings</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">SportsBras</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">Joggers & Sweatpants</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Leggings</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">SportsBras</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Joggers & Sweatpants</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -82,9 +92,9 @@
                             KIDS
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="kidsDropdown">
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">Footwears</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">Shirts & Shorts</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:product_lists' %}">Hydration bottle</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Footwears</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Shirts & Shorts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Hydration bottle</a></li>
                         </ul>
                     </li>
                 </ul>

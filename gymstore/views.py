@@ -1,3 +1,5 @@
+from django.template.context_processors import request
+
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -86,6 +88,29 @@ class AddToCartView(View):
         messages.success(request, f"{product.name} has been added to your cart!")
         return redirect('gymstore:cart')
 
+class CheckoutView(View):
+    def get(self, request, *args, **kwargs):
+        cart = get_object_or_404(Cart, user=request.user)
+        cart_products = CartProduct.objects.filter(cart=cart)
+        context = {
+            'cart': cart,
+            'cart_products': cart_products,
+        }
+        return render(request, 'checkout.html', context)
+
+    def post(self, request, *args, **kwargs):
+        cart = get_object_or_404(Cart, user=request.user)
+        cart_products = CartProduct.objects.filter(cart=cart)
+
+        order, created = Order.objects.get_or_create(user=request.user)
+        cart_products, created = CartProduct.objects.get_or_create(cart=cart, product=order)
+
+        if not cart_products.exists():
+            messages.error(request, 'Your cart is empty')
+            return redirect('gymstore:cart')
+        else:
+            messages.success(request, 'Order placed successfully!')
+            return redirect('gymstore:home')
 
 
 # Register, Login & Logout Views

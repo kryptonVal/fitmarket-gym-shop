@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
 
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/category', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -31,7 +31,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255, null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    image = models.ImageField(upload_to='images/product', blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products')
 
@@ -42,12 +42,12 @@ class Product(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', null=True)
     date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=5, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     payment_date = models.DateTimeField(null=True, blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f" order {self.id} - {self.user.email}"
+        return f" order {self.id} - {self.user.username}"
 
 
 class OrderProduct(models.Model):

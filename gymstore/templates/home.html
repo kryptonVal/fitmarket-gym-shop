@@ -21,7 +21,7 @@
                 {% for category in categories %}
                 <div class="col-md-4 d-flex align-items-stretch">
                     <div class="category-img text-center p-3 bg-light rounded">
-                        <img src="{% static category.image.url %}" class="img-fluid rounded mb-2" alt="{{ category.name }}">
+                        <img src="{{ category.image }}" class="img-fluid rounded mb-2" alt="{{ category.name }}">
                         <a class="category-name text-decoration-none" href="{% url 'gymstore:category_list' %}">
                             <h2 class="fs-4">{{ category.name }}</h2>
                         </a>
