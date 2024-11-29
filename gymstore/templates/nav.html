@@ -1,0 +1,27 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                {% for category in categories %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="{{ category.name }} Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ category.name|upper }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="{{ category.name }} Dropdown">
+                        {% for subcategory in category.subcategories.all %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'gymstore:subcategory_products' subcategory.id %}">{{ subcategory.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

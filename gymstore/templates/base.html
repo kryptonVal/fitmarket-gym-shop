@@ -12,123 +12,103 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-
     {% if messages %}
         {% for message in messages %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{message}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> 
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
         {% endfor %}
     {% endif %}
     
-    <header class="bg-dark text-white py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="{% url 'gymstore:home' %}" class="d-flex align-items-center text-decoration-none">
-                <img src="{% static 'images/logo.jpg' %}" alt="FitMarket Logo" class="me-2" style="height: 40px">
-                <span class="fs-3 fw-bold" style="font-family: 'Verdana, sans-serif'; color: #f4f4f4">FitMarket</span>
+<header class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center header-content">
+        <!-- Logo and Title -->
+        <div class="header-logo">
+            <a href="{% url 'gymstore:home' %}" class="text-decoration-none d-flex align-items-center">
+                <img src="{% static 'images/logo.jpg' %}" alt="FitMarket Logo" class="logo-img">
+                <span class="logo-title">FitMarket</span>
             </a>
-            <form class="d-flex mx-auto" style="width: 500px;">
-                <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
+        </div>
+
+        <!-- Search Area -->
+        <div class="header-search">
+            <form method="GET" action="{% url 'gymstore:product_lists' %}" class="d-flex">
+                <input class="form-control me-2" type="text" name="texts" placeholder="Search products" value="{{ request.GET.search }}">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
-            <div class="dropdown ms-3">
-                <a href="#" class="text-white dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">My Account</a>
-                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+        </div>
+
+        <!-- Account and Cart -->
+        <div class="header-actions d-flex align-items-center">
+            <!-- My Account Dropdown -->
+            <div class="dropdown me-3">
+                <a href="{% url 'gymstore:profile' %}" class="text-white dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle fs-4 me-1"></i>
                     {% if user.is_authenticated %}
+                        {{ user.username }}
+                    {% else %}
+                        My Account
+                    {% endif %}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                    {% if user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'gymstore:profile' %}">Profile</a></li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'gymstore:profile' %}">Profile</a>
-                            <form method='post' action="{% url 'gymstore:logout' %}">
+                            <form method="post" action="{% url 'gymstore:logout' %}">
                                 {% csrf_token %}
-                            <button class="dropdown-item text-danger" type="submit">Logout</button>
+                                <button class="dropdown-item text-danger" type="submit">Logout</button>
                             </form>
-                        </li>    
+                        </li>
                     {% else %}
                         <li><a class="dropdown-item" href="{% url 'gymstore:login' %}">Login</a></li>
                         <li><a class="dropdown-item" href="{% url 'gymstore:register' %}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
-            <div class="cart ms-3">
-                <a href="{% url 'gymstore:cart' %}" class="text-white d-flex align-items-center">
+
+            <!-- Cart -->
+            <div class="cart">
+                <a href="{% url 'gymstore:view_cart' %}" class="text-white d-flex align-items-center">
                     <i class="bi bi-cart-fill fs-4"></i>
-                    <span class="cart-count ms-2"></span>
+                    {% if user.is_authenticated %}
+                        <span class="ms-1">{{ cart_items_count }}</span>
+                    {% else %}
+                        <span class="ms-1">0</span>
+                    {% endif %}
                 </a>
             </div>
         </div>
-    </header>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="menDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            MEN'S
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="menDropdown">
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Shorts</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">T-Shirts & Tops</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Bags</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="womenDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            WOMEN'S
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="womenDropdown">
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Leggings</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">SportsBras</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Joggers & Sweatpants</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="kidsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            KIDS
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="kidsDropdown">
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Footwears</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Shirts & Shorts</a></li>
-                            <li><a class="dropdown-item" href="{% url 'gymstore:category_list' %}">Hydration bottle</a></li>
-                        </ul>
-                    </li>
+    </div>
+</header>
+    
+{% block content %}
+<!-- Default content goes here -->
+{% endblock %}
+    
+<footer class="footer py-4 bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'gymstore:customer-service' %}" class="text-light">Customer Service</a></li>
+                    <li><a href="{% url 'gymstore:faq' %}" class="text-light">FAQ</a></li>
                 </ul>
             </div>
-        </div>
-    </nav>
-    
-    <main class="my-5">
-        {% block content %}
-        <!-- Default content goes here -->
-        {% endblock %}
-    </main>
-    
-    <footer class="footer py-4 bg-dark text-light">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-md-4 mb-3">
-                    <ul class="list-unstyled">
-                        <li><a href="{% url 'gymstore:customer-service' %}" class="text-light">Customer Service</a></li>
-                        <li><a href="{% url 'gymstore:faq' %}" class="text-light">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 text-center mb-3">
-                    <h5>Follow Us</h5>
-                    <a href="https://facebook.com/" class="text-light me-3" target="_blank"><i class="bi bi-facebook fs-4"></i></a>
-                    <a href="https://twitter.com/" class="text-light me-3" target="_blank"><i class="bi bi-twitter fs-4"></i></a>
-                    <a href="https://instagram.com/valentino14th" class="text-light" target="_blank"><i class="bi bi-instagram fs-4"></i></a>
-                </div>
+            <div class="col-md-4 text-center">
+                <p>&copy; 2024 FitMarket Gym Store. All Rights Reserved.</p>
             </div>
-            <p class="text-center mb-0 small">&copy; 2023 FitMarket Gym Store. All Rights Reserved.</p>
+            <div class="col-md-4 text-end">
+                <h5>Follow Us</h5>
+                <a href="https://facebook.com/" class="text-light me-3" target="_blank"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="https://twitter.com/" class="text-light me-3" target="_blank"><i class="bi bi-twitter fs-4"></i></a>
+                <a href="https://instagram.com/valentino14th" class="text-light" target="_blank"><i class="bi bi-instagram fs-4"></i></a>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

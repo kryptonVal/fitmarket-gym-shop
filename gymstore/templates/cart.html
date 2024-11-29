@@ -1,32 +1,52 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Your Cart - FitMarket{% endblock %}
 
 {% block content %}
 <div class="container my-5">
-    <h2>Your Cart</h2>
-    {% if cart_products %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in cart_products %}
-                    <tr>
-                        <td>{{ product.product.name }}</td>
-                        <td>{{ product.quantity }}</td>
-                        <td>€{{ product.product.price }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'gymstore:checkout' %}" class="btn btn-primary">Checkout </a>
+    <h2 class="mb-4">Your Cart</h2>
+    
+    {% if cart_items %}
+    <ul class="list-group list-group-flush">
+        {% for cart_item in cart_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="cart-info d-flex align-items-center">
+                <img src="{{ cart_item.product.image }}" alt="{{cart_item.product.name}}" class="cart-product-image me-3"> 
+                <div>
+                    <p class="mb-1"><strong>{{ cart_item.product.name }}</strong></p>
+                    <p class="mb-1">€{{ cart_item.product.price }} each</p>
+                    <p class="mb-0"><strong>Subtotal:</strong> €{{ cart_item.product.price}} * {{ cart_item.quantity }}</p>
+                </div>
+            </div> 
+            <div class="item-controls d-flex justify-content-between align-items-center">
+                <form method="POST" action="{% url 'gymstore:view_cart' %}" class="d-flex align-items-center">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{ cart_item.id }}">
+                    <button type="submit" name="action" value="remove" class="btn btn-danger me-2">Remove</button>
+                    <span>{{ cart_item.quantity }}</span>
+                    <button type="submit" name="action" value="add" class="btn btn-primary me-2">Add</button>
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="d-flex justify-content-between align-items-center mt-4 cart-total-wrapper">
+        <p class="cart-total">
+            <i class="fas fa-shopping-cart"></i> <strong>Total:</strong> €{{ cart.total_cost }}
+        </p>
+        <div class="d-flex">
+            <a href="{% url 'gymstore:home' %}" class="btn btn-primary me-2">Continue Shopping</a>
+            <form method="POST" class="d-inline" action="{% url 'gymstore:checkout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+            </form>
+        </div>
+    </div>
     {% else %}
-        <p>Your cart is empty. <a href="{% url 'gymstore:product_lists' %}">Continue shopping</a>.</p>
+    <p class="empty-cart text-center mb-5">Your cart is empty.</p>
+    <div class="text-center">
+        <a href="{% url 'gymstore:home' %}" class="btn btn-primary">Continue to Shopping</a>
+    </div>    
     {% endif %}
 </div>
 {% endblock %}

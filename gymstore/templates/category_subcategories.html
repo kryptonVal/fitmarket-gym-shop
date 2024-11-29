@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ main_category.name }} - Subcategories | FitMarket
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>{{ main_category.name }}</h1>
+    <hr>
+    <div class="row g-4">
+        {% for subcategory in subcategories %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card text-center p-3 bg-light rounded">
+                <img src="{{ subcategory.image }}" class="img-fluid rounded mb-2" alt="{{ subcategory.name }}">
+                <a class="text-decoration-none" href="{% url 'gymstore:subcategory_products' subcategory.id %}">
+                    <h2 class="fs-4">{{ subcategory.name }}</h2>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

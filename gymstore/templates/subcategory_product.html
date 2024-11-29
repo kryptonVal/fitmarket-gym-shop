@@ -9,11 +9,15 @@
         {% for product in subcategory.products.all %}
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card product-card shadow-sm border-light">
-                    <img src="{% static product.image %}" class="card-img-top product-img" alt="{{ product.name }}">
+                    <img src="{{ product.image.url }}" class="card-img-top product-img" alt="{{ product.name }}">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text text-muted">€{{ product.price }}</p>
-                        <a href="{% url 'gymstore:product_details' pk=product.id %}" class="btn btn-view-details">View Details</a>
+                        <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn btn-view-details">View Details</a>
+                        <form method="post" action="{% url 'gymstore:add_to_cart' product_id=product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-add-cart">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>

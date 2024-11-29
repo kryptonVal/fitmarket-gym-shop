@@ -1,11 +1,18 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 
 
+STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('completed', 'Completed'),
+    ('cancelled', 'Cancelled'),
+]
+
 class Category(models.Model):
 
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='images/category', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -31,7 +38,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255, null=True, blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='images/product', blank=True, null=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products')
 
@@ -41,43 +48,40 @@ class Product(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', null=True)
-    date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    payment_date = models.DateTimeField(null=True, blank=True)
-    completed = models.BooleanField(default=False)
+    order_date = models.DateTimeField(auto_now_add=True)
+    payment_method = models.CharField(max_length=50, null=True, blank=True)
+    STATUS_CHOICES = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
+    delivery_email = models.EmailField(null=True, blank=True)
+    delivery_address = models.CharField(max_length=255)
 
-    def __str__(self):
-        return f" order {self.id} - {self.user.username}"
+    @property
+    def total_cost(self):
+        return sum(item.subtotal for item in self.cart_items.all())
 
-
-class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='products')
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, null=True, blank=True)
-    quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.quantity} {self.product.name} in order {self.order.id}"
-
-    def get_total_price(self):
-        return self.price * self.quantity
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def total_cost(self):
+        return sum(item.subtotal for item in self.items.all())
+
     def __str__(self):
-        return f"Cart for {self.user}"
+        return f"Cart of {self.user.username}"
 
 
-class CartProduct(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, related_name='items', null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.PositiveIntegerField(default=1)
+    ordered = models.BooleanField(default=False)
+    order = models.ForeignKey('Order', null=True, blank=True, on_delete=models.SET_NULL, related_name='cart_items')
 
-    def __str__(self):
-        return f"{self.quantity} {self.product.name} in cart for {self.cart.user}"
+    @property
+    def subtotal(self):
+        return self.product.price * self.quantity if self.product else 0
 
 
 class UserContact(models.Model):

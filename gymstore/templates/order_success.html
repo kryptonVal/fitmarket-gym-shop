@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Order Success - FitMarket{% endblock %}
+
+{% block content %}
+    
+<div class="container mt-5">
+    <div class="text-center">
+        <h1>Thank You for Your Order!</h1>
+        <p>Your order has been successfully placed. Below are the details:</p>
+    </div>
+
+    <div class="order-details mt-4">
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+        <p><strong>Total Cost:</strong> €{{ cart_items_count.total_cost }}</p>
+        <p><strong>Payment Method:</strong> {{ order.payment_method }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Delivery Address:</strong> {{ order.delivery_address }}</p>
+        <p><strong>Delivery Email:</strong> {{ order.delivery_email }}</p>
+    </div>
+
+    <h3 class="mt-4">Ordered Items:</h3>
+    <ul class="list-group">
+        {% for item in order_items %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <strong>{{ item.product.name }}</strong> - Quantity: {{ item.product.quantity }}
+                </span>
+                <span>Subtotal: €{{ item.subtotal }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="mt-4 text-center">
+        <a href="{% url 'gymstore:home' %}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+</div>
+
+    
+{% endblock %}

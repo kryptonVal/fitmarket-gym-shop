@@ -1,57 +1,59 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Home - FitMarket{% endblock %}
 
 {% block content %}
-<section class="my-5">
-    <div class="container position-relative" style="max-width: 100%;">
-        <div class="overlay-content text-center text-white">
-            <h1 class="display-4">Welcome to FitMarket Shop</h1>
-            <p class="lead">Discover the latest gym essentials trends and exclusive offers</p>
-            <a href="{% url 'gymstore:product_lists' %}" class="btn btn-primary">Shop Now</a>
+    {% include 'nav.html' %}
+    
+    <section class="welcome-banner">
+        <div class="container position-relative text-center text-white">
+                <h1 class="display-4">Welcome to FitMarket Shop</h1>
+                <p class="lead">Discover the latest gym essentials trends and exclusive offers</p>
+                <a href="{% url 'gymstore:product_lists' %}" class="btn btn-primary">Shop Now</a>
         </div>
-    </div>
-</section>
-
-<section class="my-5">
-    <div class="category">
-        <div class="container-fluid">
-            <div class="row g-4">
+    </section>
+    
+    <section class="categories-section my-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Categories</h2> 
+            <div class="row">
                 {% for category in categories %}
-                <div class="col-md-4 d-flex align-items-stretch">
-                    <div class="category-img text-center p-3 bg-light rounded">
-                        <img src="{% static category.image %}" class="img-fluid rounded mb-2" alt="{{ category.name }}">
-                        <a class="category-name text-decoration-none" href="{% url 'gymstore:category_list' %}">
-                            <h2 class="fs-4">{{ category.name }}</h2>
-                        </a>
+                    <div class="col-md-4">
+                        <div class="category-card text-center">
+                            <img src="{% static category.image %}" class="img-fluid rounded mb-2" alt="{{ category.name }}">
+                            <a href="{% url 'gymstore:category_subcategory_list' category.id %}" class="category-name">>
+                                <h3>{{ category.name }}</h3>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="my-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Featured Products</h2>
-        <div class="row g-4">
-            {% for product in featured_products %}
-            <div class="col-md-3 d-flex align-items-stretch">
-                <div class="card product-card">
-                    <img src="{% static product.image %}" class="card-img-top" alt="{{ product.name }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">€{{ product.price }}</p>
-                        <a href="{% url 'gymstore:add_to_cart' product_id=product.id %}" class="btn btn-outline-primary">Add to Cart</a>
+    <section class="featured-products my-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Products</h2>
+            <div class="row">
+                {% for product in featured_products %}
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <img src="{% static product.image %}" alt="{{ product.name }}" class="card-img-top">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">€{{ product.price }}</p>
+                                <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn btn-view-details">View Details</a>
+                                <form method="post" action="{% url 'gymstore:add_to_cart' product_id=product.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-add-to-cart">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
 
 
