@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
+from .models import Product
 
 # User registration form
 class RegisterForm(forms.ModelForm):
@@ -31,3 +31,5 @@ class RegisterForm(forms.ModelForm):
         if password != confirm_password:
             raise ValidationError('Passwords do not match')
         return confirm_password
+
+

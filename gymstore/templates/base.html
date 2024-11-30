@@ -30,18 +30,16 @@
                 <span class="logo-title">FitMarket</span>
             </a>
         </div>
-
-        <!-- Search Area -->
+    
         <div class="header-search">
             <form method="GET" class="d-flex">
                 <input class="form-control me-2" type="text" name="search" placeholder="Search products" value="{{ request.GET.search }}">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
-
-        <!-- Account and Cart -->
+    
         <div class="header-actions d-flex align-items-center">
-            <!-- My Account Dropdown -->
+            
             <div class="dropdown me-3">
                 <a href="{% url 'gymstore:profile' %}" class="text-white dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle fs-4 me-1"></i>
@@ -66,8 +64,7 @@
                     {% endif %}
                 </ul>
             </div>
-
-            <!-- Cart -->
+        
             <div class="cart">
                 <a href="{% url 'gymstore:view_cart' %}" class="text-white d-flex align-items-center">
                     <i class="bi bi-cart-fill fs-4"></i>
@@ -83,7 +80,7 @@
 </header>
     
 {% block content %}
-<!-- Default content goes here -->
+
 {% endblock %}
     
 <footer class="footer py-4 bg-dark text-light">

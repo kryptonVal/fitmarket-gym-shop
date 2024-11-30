@@ -7,10 +7,14 @@
 <div class="container mt-5">
     <div class="text-center">
         <h1>Thank You for Your Order!</h1>
-        <p>Your order has been successfully placed. Below are the details:</p>
+        
+        {% if success_message %}
+            <div class="alert alert-success">{{ success_message }}</div>
+        {% endif %}
+    
     </div>
-
-    <div class="order-details mt-4">
+        
+    <div class="order-details text-center mt-4 order-info">
         <h2>Order Details</h2>
         <p><strong>Order ID:</strong> {{ order.id }}</p>
         <p><strong>Order Date:</strong> {{ order.order_date }}</p>
@@ -21,8 +25,8 @@
         <p><strong>Delivery Email:</strong> {{ order.delivery_email }}</p>
     </div>
 
-    <h3 class="mt-4">Ordered Items:</h3>
-    <ul class="list-group">
+    <h3 class="mt-4 text-center">Ordered Items:</h3>
+    <ul class="list-group list-group-flush mx-auto" style="max-width: 600px;">
         {% for item in order_items %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>
@@ -30,13 +34,14 @@
                 </span>
                 <span>Subtotal: €{{ item.subtotal }}</span>
             </li>
+        {% empty %}
+            <li class="list-group-item">No items found for this order.</li>
         {% endfor %}
     </ul>
 
     <div class="mt-4 text-center">
-        <a href="{% url 'gymstore:home' %}" class="btn btn-primary">Continue Shopping</a>
+        <a href="{% url 'gymstore:home' %}" class="btn order-action btn-primary">Continue Shopping</a>
     </div>
 </div>
 
-    
 {% endblock %}

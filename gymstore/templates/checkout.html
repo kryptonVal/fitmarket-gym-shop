@@ -1,22 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="checkout-container mt-5">
+<div class="checkout-container mt-5 text-center">
     <h2 class="mb-4">Checkout</h2>
-    <form method="post" action="{% url 'gymstore:checkout' %}">
+    <form method="post" action="{% url 'gymstore:checkout' %}" class="checkout-form">
         {% csrf_token %}
-    
         <h3 class="mb-4">Checkout Information</h3>
-        <ul class="list-group mb-4 col-md-6">
+        <ul class="list-group mb-4 mx-auto" style="max-width: 500px;">
             {% for item in cart_items %}
-            <li class="list-group-item">{{ item.product.name }} - Quantity: {{ item.quantity }} - Price per item: €{{ item.product.price }}</li>
+            <li class="list-group-item text-start">{{ item.product.name }} - Quantity: {{ item.quantity }} - Price per item: €{{ item.product.price }}</li>
             {% endfor %}
         </ul>
-        <p class="col-md-6"><strong>Total price:</strong> €{{ total_cost }}</p>
+        <p><strong>Total price:</strong> €{{ total_cost }}</p>
         
         <h3 class="mb-3">Payment Details</h3>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 mx-auto" style="max-width: 500px;">
             <label for="payment_method" class="form-label">Payment Method</label>
             <select id="payment_method" name="payment_method" class="form-select">
                 <option value="Credit Card">Credit Card</option>
@@ -26,21 +24,21 @@
         </div>
     
         <h3 class="mb-3">Delivery Email</h3>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 mx-auto" style="max-width: 500px;">
             <label for="delivery_email" class="form-label">Delivery Email</label>
             <input type="email" id="delivery_email" name="delivery_email" class="form-control" value="{{ request.user.email }}" required>
         </div>
         
         <h3 class="mb-3">Delivery Address</h3>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 mx-auto" style="max-width: 500px;">
             <label for="delivery_address" class="form-label">Delivery Address</label>
-            <input type="text" id="delivery_address" name="delivery_address" class="form-control" value="{{ request.user.address }}" required></input>
+            <input type="text" id="delivery_address" name="delivery_address" class="form-control" value="{{ request.user.address }}" required>
         </div>
-        <button type="submit" class="btn btn-order">Place Order</button>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <button type="submit" class="btn btn-checkout-action btn-success">Place Order</button>
+            <a href="{% url 'gymstore:view_cart' %}" class="btn btn-checkout-action btn-danger">Cancel</a>
+        </div>
     </form>
-    
-    <a href="{% url 'gymstore:view_cart' %}" class="btn btn-danger-custom">Cancel</a>
     <a href="{% url 'gymstore:view_cart' %}" class="btn btn-link mt-3">Back to Cart</a>
-</div>    
-    
+</div>
 {% endblock %}

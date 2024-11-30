@@ -23,7 +23,7 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcategories', null=True)
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -41,7 +41,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     is_featured = models.BooleanField(default=False)
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products')
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products', null=True)
 
     def __str__(self):
         return self.name

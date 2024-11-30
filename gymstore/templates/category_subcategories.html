@@ -11,8 +11,8 @@
     <div class="row g-4">
         {% for subcategory in subcategories %}
         <div class="col-md-4 d-flex align-items-stretch">
-            <div class="card text-center p-3 bg-light rounded">
-                <img src="{{ subcategory.image }}" class="img-fluid rounded mb-2" alt="{{ subcategory.name }}">
+            <div class="subcategory-card text-center p-3 bg-light rounded">
+                <img src="{% static subcategory.image %}" class="img-fluid rounded mb-2 subcategory-img" alt="{{ subcategory.name }}">
                 <a class="text-decoration-none" href="{% url 'gymstore:subcategory_products' subcategory.id %}">
                     <h2 class="fs-4">{{ subcategory.name }}</h2>
                 </a>

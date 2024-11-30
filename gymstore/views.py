@@ -1,7 +1,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -21,7 +20,9 @@ class HomeView(View):
 
         if search_products:
             products = Product.objects.filter(name__icontains=search_products)
-            print(products)
+            if not products:
+                messages.info(request, 'No products found matching your search.')
+
             return ProductListView.get(self, request, searched_results=products)
 
         categories = Category.objects.all()
@@ -82,7 +83,6 @@ class CategorySubCategoryListView(View):
                 'products': products,
             }
             return render(request, 'subcategory_product.html', context)
-
 
 class ProductListView(View):
     def get(self, request, searched_results=None, *args, **kwargs):
@@ -203,7 +203,8 @@ class CheckoutView(LoginRequiredMixin, View):
             item.order = order
             item.save()
 
-        cart.items.filter(order=order).delete()
+        cart.items.clear()
+
 
         messages.success(request, 'Your order has been placed successfully.')
         return redirect(reverse('gymstore:order_success', args=[order.id]))
@@ -213,7 +214,7 @@ class OrderSuccessView(LoginRequiredMixin, View):
         order_id = kwargs.get('order_id')
         latest_order = get_object_or_404(Order, id=order_id, user=request.user)
 
-        order_items = latest_order.cart_items.all()
+        order_items = CartItem.objects.filter(order=latest_order)
 
         cart = Cart.objects.filter(user=request.user).first()
         if cart:
@@ -223,6 +224,7 @@ class OrderSuccessView(LoginRequiredMixin, View):
             'order': latest_order,
             'order_items': order_items,
             'cart_items_count': 0,
+            'success_message': 'Your order has been placed successfully.'
         }
 
         return render(request, 'order_success.html', context)
@@ -280,7 +282,6 @@ class ProfileView(View):
         user=request.user
         context = {'user': user}
         return render(request, 'profile.html', context)
-
 
 class FAQView(TemplateView):
     template_name = 'faq.html'

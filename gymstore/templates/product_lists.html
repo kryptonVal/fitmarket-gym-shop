@@ -22,17 +22,17 @@
                         <p class="card-text text-muted">In: {{ product.subcategory.name }}</p>
                         
                         <div class="card-body text-center">
-                            <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn btn-view-details">View Product details</a>
+                            <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn-action">View Product details</a>
                         </div>
 
                         <div class="d-flex justify-content-center">
                             {% if product.stock > 0 %}
                                 <form method="post" action="{% url 'gymstore:add_to_cart' product_id=product.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-add-to-cart">Add to Cart</button>
+                                    <button type="submit" class="btn-action">Add to Cart</button>
                                 </form>
                             {% else %}
-                                <span class="btn btn-unavailable">Unavailable</span>
+                                <span class="btn-action">Unavailable</span>
                             {% endif %}
                         </div>
                     </div>

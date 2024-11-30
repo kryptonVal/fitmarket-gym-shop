@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from .views import (HomeView, CategoryView, SubCategoryView, ProductDetailView, ViewCartView, ProductListView,
                     RegisterView, LoginView, LogoutView, AddToCartView, ProfileView, CheckoutView, FAQView,
-                    CustomerServiceView, DeleteFromCartView, OrderSuccessView, CategorySubCategoryListView)
+                    CustomerServiceView, DeleteFromCartView, OrderSuccessView, CategorySubCategoryListView,
+                    )
 
 app_name = 'gymstore'
 

@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                         <div class="category-card text-center">
                             <img src="{% static category.image %}" class="img-fluid rounded mb-2" alt="{{ category.name }}">
-                            <a href="{% url 'gymstore:category_subcategory_list' category.id %}" class="category-name">>
+                            <a href="{% url 'gymstore:category_subcategory_list' category.id %}" class="category-name">
                                 <h3>{{ category.name }}</h3>
                             </a>
                         </div>
@@ -42,10 +42,10 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{ product.name }}</h5>
                                 <p class="card-text">€{{ product.price }}</p>
-                                <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn btn-view-details">View Details</a>
+                                <a href="{% url 'gymstore:product_details' product_id=product.id %}" class="btn-action">View Details</a>
                                 <form method="post" action="{% url 'gymstore:add_to_cart' product_id=product.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-add-to-cart">Add to Cart</button>
+                                    <button type="submit" class="btn-action">Add to Cart</button>
                                 </form>
                             </div>
                         </div>
