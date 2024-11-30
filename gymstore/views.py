@@ -1,6 +1,5 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.template.context_processors import request
 from django.urls import reverse
 
 from .forms import RegisterForm
@@ -16,14 +15,14 @@ from .models import Category, SubCategory, Product, Cart, CartItem, Order
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         search_products = request.GET.get('search', '')
-        category_id = request.GET.get('category_id', '')
 
         products = Product.objects.all()
+        print(search_products)
 
         if search_products:
             products = Product.objects.filter(name__icontains=search_products)
-        if category_id:
-            products = Product.objects.filter(subcategory__category_id=category_id)
+            print(products)
+            return ProductListView.get(self, request, searched_results=products)
 
         categories = Category.objects.all()
         featured_products = Product.objects.filter(is_featured=True)
@@ -86,8 +85,10 @@ class CategorySubCategoryListView(View):
 
 
 class ProductListView(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request, searched_results=None, *args, **kwargs):
         products = Product.objects.all()
+        if searched_results:
+            products = searched_results
         context = {'products': products}
         return render(request, 'product_lists.html', context)
 

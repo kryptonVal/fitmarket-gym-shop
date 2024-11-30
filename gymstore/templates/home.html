@@ -4,7 +4,7 @@
 
 {% block content %}
     {% include 'nav.html' %}
-    
+
     <section class="welcome-banner">
         <div class="container position-relative text-center text-white">
                 <h1 class="display-4">Welcome to FitMarket Shop</h1>
@@ -12,10 +12,10 @@
                 <a href="{% url 'gymstore:product_lists' %}" class="btn btn-primary">Shop Now</a>
         </div>
     </section>
-    
+
     <section class="categories-section my-5">
         <div class="container">
-            <h2 class="text-center mb-5">Categories</h2> 
+            <h2 class="text-center mb-5">Categories</h2>
             <div class="row">
                 {% for category in categories %}
                     <div class="col-md-4">
