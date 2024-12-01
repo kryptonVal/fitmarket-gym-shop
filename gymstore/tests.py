@@ -33,11 +33,9 @@ class ViewCartTest(TestCase):
         self.user = User.objects.create_user(username='tester', password='password')
         self.client.login(username='tester', password='password')
 
-        # Create a Category and SubCategory
         self.category = Category.objects.create(name='Fitness')
         self.subcategory = SubCategory.objects.create(name='Equipment', category=self.category)
 
-        # Create a Product named "Skipping Rope"
         self.product = Product.objects.create(
             name='Skipping Rope',
             subcategory=self.subcategory,
@@ -46,7 +44,6 @@ class ViewCartTest(TestCase):
             description='Durable rope'
         )
 
-        # Create a Cart and add the product to it
         self.cart = Cart.objects.create(user=self.user)
         CartItem.objects.create(cart=self.cart, product=self.product, quantity=2)
 

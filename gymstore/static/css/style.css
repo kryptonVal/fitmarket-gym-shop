@@ -649,3 +649,23 @@ a.text-decoration-none:hover {
 .order-action:hover {
     opacity: 0.9;
 }
+
+
+.weather-widget {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 300px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.weather-widget h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.weather-widget p {
+    margin: 5px 0;
+}

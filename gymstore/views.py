@@ -1,5 +1,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.sites import requests
 from django.urls import reverse
 from .forms import RegisterForm
 from django.contrib import messages
@@ -288,3 +289,4 @@ class FAQView(TemplateView):
 
 class CustomerServiceView(TemplateView):
     template_name = 'customer_service.html'
+
