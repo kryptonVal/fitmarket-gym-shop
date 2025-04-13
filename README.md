@@ -5,15 +5,11 @@
 
 Fitmarket Gym Shop is a modern online store that offers a stylish and functional range of gym apparel, designed specifically for fitness enthusiasts. The platform provides a diverse selection of activewear for men, women, and kids, including:
 
-* 👟 Shoes
-
-* 👕 Shirts
-
-* 🩳 Shorts
-
-* 🧘‍♀️ Leggings
-
-* 🏋️‍♀️ Sports Bras
+👟 Shoes
+👕 Shirts
+🩳 Shorts
+🧘‍♀️ Leggings
+🏋️‍♀️ Sports Bras
 
 All products are crafted with high-quality materials that prioritize comfort and performance, helping customers look great while achieving their fitness goals.
 
@@ -23,11 +19,9 @@ All products are crafted with high-quality materials that prioritize comfort and
 
 This project was built using:
 
-* PyCharm 2024.2.3
-
-* Django 5.1.3
-
-* mysqlclient 2.2.6
+PyCharm 2024.2.3
+Django 5.1.3
+mysqlclient 2.2.6
 
 🚀 **Installation & Setup:**
 
@@ -55,10 +49,10 @@ pip install -r requirements.txt
 
 Key dependencies:
 
-*asgiref==3.8.1
-*pillow==11.0.0
-*sqlparse==0.5.2
-*tzdata==2024.2
+asgiref==3.8.1
+pillow==11.0.0
+sqlparse==0.5.2
+tzdata==2024.2
 
 4. Environment Configuration
 Create a .env file in the root directory with the following content:
@@ -74,8 +68,8 @@ SECRET_KEY=django-insecure-4b#a5qv_lp*qszyre)3t=&+aiq6mke&yh!_4a$!w!ax+2m%6ev
 5. Database Setup
 Ensure MySQL is installed and running.
 
-*Open MySQL Workbench or any preferred MySQL client
-*Create a database named: fitmarket_gym_shop
+Open MySQL Workbench or any preferred MySQL client
+Create a database named: fitmarket_gym_shop
 
 Run the following Django commands to apply migrations:
 
@@ -94,18 +88,18 @@ This project uses class-based views throughout the application to handle logic a
 **✅ Testing**
 We have implemented unit tests for cart and order functionalities. Using test.py in PyCharm, the following tests were run:
 
-*AddToCartTest
-*ViewCartTest
-*DeleteFromCartTest
-*CheckoutTest
-*OrderSuccessTest
+AddToCartTest
+ViewCartTest
+DeleteFromCartTest
+CheckoutTest
+OrderSuccessTest
 
 **👥 Credits**
 This project is a collaborative effort by:
 
-*Valentine
-*Azeema Mehdi
-*Andrei Jerjomenko
-*Roman Tomusk
-*Tauri Luigand
+Valentine
+Azeema Mehdi
+Andrei Jerjomenko
+Roman Tomusk
+Tauri Luigand
 
