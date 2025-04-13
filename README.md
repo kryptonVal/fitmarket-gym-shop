@@ -5,43 +5,41 @@
 
 Fitmarket Gym Shop is a modern online store that offers a stylish and functional range of gym apparel, designed specifically for fitness enthusiasts. The platform provides a diverse selection of activewear for men, women, and kids, including:
 
-👟 Shoes
+* 👟 Shoes
 
-👕 Shirts
+* 👕 Shirts
 
-🩳 Shorts
+* 🩳 Shorts
 
-🧘‍♀️ Leggings
+* 🧘‍♀️ Leggings
 
-🏋️‍♀️ Sports Bras
+* 🏋️‍♀️ Sports Bras
 
 All products are crafted with high-quality materials that prioritize comfort and performance, helping customers look great while achieving their fitness goals.
 
 🔍 Users can search products by name directly on the site.
 
-🛠️ Technology Stack
+**🛠️ Technology Stack:**
+
 This project was built using:
 
-PyCharm 2024.2.3
+* PyCharm 2024.2.3
 
-Django 5.1.3
+* Django 5.1.3
 
-mysqlclient 2.2.6
+* mysqlclient 2.2.6
 
-🚀 Installation & Setup
+🚀 **Installation & Setup:**
+
 1. Clone the Repository
 You can clone the project using Git in PyCharm or your terminal:
 
-bash
-Copy
-Edit
 git clone https://github.com/kryptonVal/fitmarket-gym-shop.git
 cd fitmarket-gym-shop
+
 2. Create and Activate Virtual Environment
-bash
-Copy
-Edit
 python -m venv venv
+
 Activate the virtual environment:
 
 Windows:
@@ -53,26 +51,18 @@ source venv/bin/activate
 3. Install Dependencies
 Install all required packages using the provided requirements.txt:
 
-bash
-Copy
-Edit
 pip install -r requirements.txt
+
 Key dependencies:
 
-asgiref==3.8.1
-
-pillow==11.0.0
-
-sqlparse==0.5.2
-
-tzdata==2024.2
+*asgiref==3.8.1
+*pillow==11.0.0
+*sqlparse==0.5.2
+*tzdata==2024.2
 
 4. Environment Configuration
 Create a .env file in the root directory with the following content:
 
-env
-Copy
-Edit
 DB_ENGINE=django.db.backends.mysql
 DB_NAME=fitmarket_gym_shop
 DB_USER=root
@@ -80,54 +70,42 @@ DB_PASSWORD=1234
 DB_HOST=localhost
 DB_PORT=3306
 SECRET_KEY=django-insecure-4b#a5qv_lp*qszyre)3t=&+aiq6mke&yh!_4a$!w!ax+2m%6ev
+
 5. Database Setup
 Ensure MySQL is installed and running.
 
-Open MySQL Workbench or any preferred MySQL client
-
-Create a database named: fitmarket_gym_shop
+*Open MySQL Workbench or any preferred MySQL client
+*Create a database named: fitmarket_gym_shop
 
 Run the following Django commands to apply migrations:
 
-bash
-Copy
-Edit
 python manage.py makemigrations
 python manage.py migrate
+
 6. Start Development Server
-bash
-Copy
-Edit
 python manage.py runserver
+
 Your app will be running at:
 http://127.0.0.1:8000/
 
-👀 Views
+**👀 Views**
 This project uses class-based views throughout the application to handle logic and rendering efficiently.
 
-✅ Testing
+**✅ Testing**
 We have implemented unit tests for cart and order functionalities. Using test.py in PyCharm, the following tests were run:
 
-AddToCartTest
+*AddToCartTest
+*ViewCartTest
+*DeleteFromCartTest
+*CheckoutTest
+*OrderSuccessTest
 
-ViewCartTest
-
-DeleteFromCartTest
-
-CheckoutTest
-
-OrderSuccessTest
-
-👥 Credits
+**👥 Credits**
 This project is a collaborative effort by:
 
-Valentine
-
-Azeema Mehdi
-
-Andrei Jerjomenko
-
-Roman Tomusk
-
-Tauri Luigand
+*Valentine
+*Azeema Mehdi
+*Andrei Jerjomenko
+*Roman Tomusk
+*Tauri Luigand
 
