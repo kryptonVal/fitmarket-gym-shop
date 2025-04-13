@@ -3,87 +3,123 @@
 
 [image](https://github.com/kryptonVal/fitmarket-gym-shop/issues/2#issue-2708732346) (screenshot link)
 
-Fitmarket Gym Shop is an online shop that offers a stylish and functional range of gym clothing designed for fitness enthusiasts. 
-The shop features a diverse selection of activewear for both men, women, and kids. Products in the store includes  shoes, shirts, leggings, shorts, and sports bras. Each piece is crafted with high-quality materials that prioritize comfort and performance, ensuring that customers can look great while achieving their fitness goals.
-The user can search products in the stroe site by product name. 
+Fitmarket Gym Shop is a modern online store that offers a stylish and functional range of gym apparel, designed specifically for fitness enthusiasts. The platform provides a diverse selection of activewear for men, women, and kids, including:
 
-## Technology
-This project is based on:
+👟 Shoes
 
-pycharm 2024.2.3,
-Django	5.1.3,
-mysqlclient	2.2.6
+👕 Shirts
 
-## Installation
+🩳 Shorts
 
+🧘‍♀️ Leggings
 
-1. Clone the repository:
+🏋️‍♀️ Sports Bras
 
-* In Pycharm git clone URL https://github.com/kryptonVal/fitmarket-gym-shop.git
+All products are crafted with high-quality materials that prioritize comfort and performance, helping customers look great while achieving their fitness goals.
 
-* Install the project dependencies:
+🔍 Users can search products by name directly on the site.
 
-pip install -r requirements.txt
-asgiref 3.8.1
-pillow 11.0.0
-sqlparse 0.5.2
-tzdata 2024.2
+🛠️ Technology Stack
+This project was built using:
 
+PyCharm 2024.2.3
 
-2. Create a virtual environment and install dependencies:
+Django 5.1.3
 
+mysqlclient 2.2.6
+
+🚀 Installation & Setup
+1. Clone the Repository
+You can clone the project using Git in PyCharm or your terminal:
+
+bash
+Copy
+Edit
+git clone https://github.com/kryptonVal/fitmarket-gym-shop.git
+cd fitmarket-gym-shop
+2. Create and Activate Virtual Environment
+bash
+Copy
+Edit
 python -m venv venv
+Activate the virtual environment:
 
-It will
-Create a New Directory.
-Copy Python Executable.
-Create Site Packages Directory
-Create Activation Scripts. These scripts are located in:
-venv/Scripts/activate (on Windows)
-venv/bin/activate (on macOS/Linux)
+Windows:
+venv\Scripts\activate
 
+macOS/Linux:
+source venv/bin/activate
+
+3. Install Dependencies
+Install all required packages using the provided requirements.txt:
+
+bash
+Copy
+Edit
 pip install -r requirements.txt
+Key dependencies:
 
-Create environment file:
- .env
-insert following
-DB_ENGINE= "django.db.backends.mysql"
-DB_NAME="fitmarket_gym_shop"
-DB_USER="root"
-DB_PASSWORD="1234"
-DB_HOST="localhost"
-DB_PORT="3306"
-SECRET_KEY = 'django-insecure-4b#a5qv_lp*qszyre)3t=&+aiq6mke&yh!_4a$!w!ax+2m%6ev'
+asgiref==3.8.1
 
+pillow==11.0.0
 
-3. Database Setup
+sqlparse==0.5.2
 
+tzdata==2024.2
+
+4. Environment Configuration
+Create a .env file in the root directory with the following content:
+
+env
+Copy
+Edit
+DB_ENGINE=django.db.backends.mysql
+DB_NAME=fitmarket_gym_shop
+DB_USER=root
+DB_PASSWORD=1234
+DB_HOST=localhost
+DB_PORT=3306
+SECRET_KEY=django-insecure-4b#a5qv_lp*qszyre)3t=&+aiq6mke&yh!_4a$!w!ax+2m%6ev
+5. Database Setup
 Ensure MySQL is installed and running.
 
-In MySQL Workbench create a MySQL database named fitmarket_gym_shop. (create schema)
+Open MySQL Workbench or any preferred MySQL client
 
-Update the database configuration in .env with your MySQL credentials (user, password, root)
+Create a database named: fitmarket_gym_shop
 
+Run the following Django commands to apply migrations:
+
+bash
+Copy
+Edit
 python manage.py makemigrations
 python manage.py migrate
-
-Start the development server
-
+6. Start Development Server
+bash
+Copy
+Edit
 python manage.py runserver
-server at http://127.0.0.1:8000/
+Your app will be running at:
+http://127.0.0.1:8000/
 
-## Views
-In this project we use class_based views.
+👀 Views
+This project uses class-based views throughout the application to handle logic and rendering efficiently.
 
+✅ Testing
+We have implemented unit tests for cart and order functionalities. Using test.py in PyCharm, the following tests were run:
 
-## Testing
-In our Project, we ran test for Cart and  Orders. 
-Using Pycharms test.py, we ran 5 tests: AddToCartTest, ViewCartTest, DeleteFromCartTest, CheckoutTest, and OrderSuccessTest.
+AddToCartTest
 
+ViewCartTest
 
+DeleteFromCartTest
 
-## Credits
-This project was made as a collaboration by
+CheckoutTest
+
+OrderSuccessTest
+
+👥 Credits
+This project is a collaborative effort by:
 
 Valentine
 
@@ -94,3 +130,4 @@ Andrei Jerjomenko
 Roman Tomusk
 
 Tauri Luigand
+
