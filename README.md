@@ -3,60 +3,81 @@
 
 [image](https://github.com/kryptonVal/fitmarket-gym-shop/issues/2#issue-2708732346) (screenshot link)
 
-Fitmarket Gym Shop is a modern online store that offers a stylish and functional range of gym apparel, designed specifically for fitness enthusiasts. The platform provides a diverse selection of activewear for men, women, and kids, including:
+Fitmarket Gym Shop is a full-stack e-commerce web application built with Django and MySQL, designed to demonstrate practical software engineering skills including backend development, database design, testing, and clean architecture. The project simulates a real-world online retail platform for fitness apparel.
 
-👟 Shoes
+🎯 Project Purpose (Why this project)
 
-👕 Shirts
+This project was built to:
 
-🩳 Shorts
+Apply computer science fundamentals in a real application
 
-🧘‍♀️ Leggings
+Practice backend development with Django
 
-🏋️‍♀️ Sports Bras
+Implement scalable, maintainable architecture
 
-All products are crafted with high-quality materials that prioritize comfort and performance, helping customers look great while achieving their fitness goals.
+Gain hands-on experience with databases, testing, and environment configuration
 
-🔍 Users can search products by name directly on the site.
+Simulate real e-commerce workflows (cart, checkout, orders)
 
-**🛠️ Technology Stack:**
+🧩 Core Features
 
-This project was built using:
+Product catalog with multiple categories (men, women, kids)
 
-PyCharm 2024.2.3
+Product search by name
 
-Django 5.1.3
+Shopping cart functionality (add, view, remove items)
 
-mysqlclient 2.2.6
+Checkout and order confirmation flow
 
-🚀 **Installation & Setup:**
+Server-side rendering with Django templates
 
-1. Clone the Repository
-You can clone the project using Git in PyCharm or your terminal:
+Class-based views for maintainable logic
 
-git clone https://github.com/kryptonVal/fitmarket-gym-shop.git
+MySQL database integration
 
-cd fitmarket-gym-shop
+Unit tests for critical user flows
 
-2. Create and Activate Virtual Environment
-python -m venv venv
+🛍️ Product Categories
 
-Activate the virtual environment:
+Shoes
 
-Windows:
-venv\Scripts\activate
+Shirts
 
-macOS/Linux:
-source venv/bin/activate
+Shorts
 
-3. Install Dependencies
-Install all required packages using the provided requirements.txt:
+Leggings
 
-pip install -r requirements.txt
+Sports Bras
 
-Key dependencies:
+🏗️ Architecture & Engineering Practices
+
+Framework: Django (MTV architecture)
+
+Views: Class-Based Views (CBVs) for reuse and clarity
+
+Database: MySQL with Django ORM
+
+Environment Management: Virtual environments and .env configuration
+
+Testing: Django unit tests for cart and order workflows
+
+Version Control: Git & GitHub collaboration
+
+🛠️ Tech Stack
+
+Language: Python
+
+Backend Framework: Django 5.1.3
+
+Database: MySQL
+
+IDE: PyCharm 2024.2.3
+
+Key Dependencies
 
 asgiref==3.8.1
+
+mysqlclient==2.2.6
 
 pillow==11.0.0
 
@@ -64,47 +85,61 @@ sqlparse==0.5.2
 
 tzdata==2024.2
 
+🚀 Getting Started
+1. Clone the Repository
+git clone https://github.com/kryptonVal/fitmarket-gym-shop.git
+cd fitmarket-gym-shop
+
+2. Create & Activate Virtual Environment
+python -m venv venv
+
+
+Activate:
+
+Windows: venv\Scripts\activate
+
+macOS/Linux: source venv/bin/activate
+
+3. Install Dependencies
+pip install -r requirements.txt
+
 4. Environment Configuration
-Create a .env file in the root directory with the following content:
+
+Create a .env file in the project root:
 
 DB_ENGINE=django.db.backends.mysql
-
 DB_NAME=fitmarket_gym_shop
-
 DB_USER=root
-
 DB_PASSWORD=1234
-
 DB_HOST=localhost
-
 DB_PORT=3306
+SECRET_KEY=your-secret-key
 
-SECRET_KEY=django-insecure-4b#a5qv_lp*qszyre)3t=&+aiq6mke&yh!_4a$!w!ax+2m%6ev
 
 5. Database Setup
-Ensure MySQL is installed and running.
 
-Open MySQL Workbench or any preferred MySQL client
+Ensure MySQL is running
 
-Create a database named: fitmarket_gym_shop
+Create database:
 
-Run the following Django commands to apply migrations:
+fitmarket_gym_shop
+
+
+Apply migrations:
 
 python manage.py makemigrations
-
 python manage.py migrate
 
-6. Start Development Server
+6. Run the Application
 python manage.py runserver
 
-Your app will be running at:
-http://127.0.0.1:8000/
 
-**👀 Views**
-This project uses class-based views throughout the application to handle logic and rendering efficiently.
+Access at:
+👉 http://127.0.0.1:8000/
 
-**✅ Testing**
-We have implemented unit tests for cart and order functionalities. Using test.py in PyCharm, the following tests were run:
+✅ Testing
+
+Unit tests were implemented for critical e-commerce functionality:
 
 AddToCartTest
 
@@ -116,10 +151,11 @@ CheckoutTest
 
 OrderSuccessTest
 
-**👥 Credits**
-This project is a collaborative effort by:
+Tests validate correctness of cart behavior and order flow using Django’s testing framework.
 
-Valentine
+👥 Contributors
+
+Valentine Okoye
 
 Azeema Mehdi
 
@@ -129,3 +165,14 @@ Roman Tomusk
 
 Tauri Luigand
 
+🔮 Future Improvements
+
+User authentication and profiles
+
+Payment gateway integration
+
+REST API endpoints
+
+Frontend framework integration (React)
+
+Performance and security enhancements
